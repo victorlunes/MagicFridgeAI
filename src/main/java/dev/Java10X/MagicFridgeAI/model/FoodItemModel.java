@@ -1,8 +1,7 @@
 package dev.Java10X.MagicFridgeAI.model;
 
 import dev.Java10X.MagicFridgeAI.enums.FoodItemEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -13,10 +12,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodItemModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private FoodItemEnum categoria;
     private Integer quantidade;
+    private LocalDate validade;
 
     public Long getId() {
         return id;
@@ -50,13 +52,11 @@ public class FoodItemModel {
         this.quantidade = quantidade;
     }
 
-    public LocalDate getValidate() {
-        return validate;
+    public LocalDate getValidade() {
+        return validade;
     }
 
-    public void setValidate(LocalDate validate) {
-        this.validate = validate;
+    public void setValidade(LocalDate validade) {
+        this.validade = validade;
     }
-
-    private LocalDate validate;
 }
