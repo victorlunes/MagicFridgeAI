@@ -10,8 +10,8 @@ import java.util.List;
 
 @Service
 public class FoodItemService {
-    private FoodItemRepository foodItemRepository;
-    private FoodItemMapper foodItemMapper;
+    private final FoodItemRepository foodItemRepository;
+    private final FoodItemMapper foodItemMapper;
 
     public FoodItemService(FoodItemRepository foodItemRepository, FoodItemMapper foodItemMapper) {
         this.foodItemRepository = foodItemRepository;
@@ -21,5 +21,11 @@ public class FoodItemService {
     public List<FoodItemDTO> getFoodItem() {
         List<FoodItemModel> foodItems = foodItemRepository.findAll();
         return foodItems.stream().map(food -> foodItemMapper.mapToDto(food)).toList();
+    }
+
+    public FoodItemDTO createFoodItem(FoodItemDTO foodItemDTO) {
+        FoodItemModel food = foodItemMapper.mapToModel(foodItemDTO);
+        foodItemRepository.save(food);
+        return foodItemMapper.mapToDto(food);
     }
 }
