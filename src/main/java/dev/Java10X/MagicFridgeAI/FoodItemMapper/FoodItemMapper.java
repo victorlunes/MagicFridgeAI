@@ -2,9 +2,11 @@ package dev.Java10X.MagicFridgeAI.FoodItemMapper;
 
 import dev.Java10X.MagicFridgeAI.DTO.FoodItemDTO;
 import dev.Java10X.MagicFridgeAI.model.FoodItemModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FoodItemMapper {
-    public FoodItemModel map(FoodItemDTO foodItemDTO){
+    public FoodItemModel mapToModel(FoodItemDTO foodItemDTO){
         FoodItemModel foodItemModel = new FoodItemModel();
         foodItemModel.setId(foodItemDTO.getId());
         foodItemModel.setNome(foodItemDTO.getNome());
@@ -14,7 +16,7 @@ public class FoodItemMapper {
         return foodItemModel;
     }
 
-    public FoodItemDTO map(FoodItemModel foodItemModel){
+    public FoodItemDTO mapToDto(FoodItemModel foodItemModel){
         FoodItemDTO foodItemDTO = new FoodItemDTO();
         foodItemDTO.setId(foodItemModel.getId());
         foodItemDTO.setNome(foodItemModel.getNome());
